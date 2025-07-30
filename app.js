@@ -1,7 +1,16 @@
 import http from 'http';
+import { readFileSync } from 'fs';
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url';
 
-const hostname = '127.0.0.1';
-const port = 3000 ; 
+//  C:\Users\abdul\OneDrive\Dokumente\nodejs_intro\app.js
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const configPath = path.join(__dirname, 'config.json') ;
+const config = JSON.parse(readFileSync(configPath, 'utf8'));
+const {port,hostname} = config;
+
 
 const server = http.createServer((req, res )  =>{
 
